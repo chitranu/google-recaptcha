@@ -33,6 +33,7 @@ $request->validate([
 ]);
 ```
 
+## Examples
 
 ### Using in frontend (vue-recaptcha-v3 plugin)
 This package is intended to use with [vue-recaptcha-v3](https://github.com/AurityLab/vue-recaptcha-v3) npm plugin. You can use it by creating a Vue form component using `vue-recaptcha-v3` plugin shown below.
