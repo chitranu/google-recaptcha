@@ -5,6 +5,10 @@
 
 This package is a wrapper around [Google's reCAPTCHA PHP client library](https://github.com/google/recaptcha). It provides a handy validation rule `recaptcha`, which can be used to validate the reCAPTCHA token in the form requests.
 
+You can use this package with any of reCAPTCHA types:
+- Google reCAPTCHA v2
+- Google reCAPTCHA v3
+
 ## Installation
 
 You can install the package via composer:
@@ -30,7 +34,121 @@ $request->validate([
 ```
 
 
-### Changelog
+### Using in frontend (vue-recaptcha-v3 plugin)
+This package is intended to use with [vue-recaptcha-v3](https://github.com/AurityLab/vue-recaptcha-v3) npm plugin. You can use it by creating a Vue form component using `vue-recaptcha-v3` plugin shown below.
+
+Register your site key with the `vue-recaptcha-v3` plugin:
+
+```js
+import Vue from 'vue'
+import { VueReCaptcha } from 'vue-recaptcha-v3'
+
+Vue.use(VueReCaptcha, { siteKey: 'YOUR_GOOGLE_SITE_KEY' })
+```
+
+Create a Vue component for the form and submit reCAPTCHA token using form like this:
+
+```vue
+<template>
+	<form @submit.prevent="onFormSubmit()" ref="contactform">
+        <input type="text" name="name" placeholder="Your Name"/>
+        <input type="email" name="email" placeholder="Your Email"/>
+        <textarea name="message" placeholder="Your Message"></textarea>
+	 	<button  type="submit">Submit</button>
+	</form>
+</template>
+
+<script>
+export default {
+  methods: {
+    onFormSubmit() {
+    // Wait until recaptcha has been loaded.
+    await this.$recaptchaLoaded()
+
+    // Execute reCAPTCHA with action "login".
+    const token = await this.$recaptcha('login')
+
+    // Prepare form data
+    let formData = new FormData(this.$refs.contactform);
+
+    // Appended token in formData
+    formData.append('recaptcha-token', token);
+
+    // Make an ajax request to your Laravel endpoint.
+    axios.post('/your-form-endpoint', formData)
+      .then(response => {
+        // handle response
+      }, error => {
+        // handle errors
+      })
+    }
+  }
+}
+</script>
+
+```
+
+### Using in frontend (vue-recaptcha plugin)
+If you are using [vue-recaptcha](https://github.com/DanSnow/vue-recaptcha) plugin (older version), you can still use it by creating a vue form component shown below:
+
+```vue
+<template>
+	<form @submit.prevent="onFormSubmit()" ref="contactform">
+        <input type="text" name="name" placeholder="Your Name"/>
+        <input type="email" name="email" placeholder="Your Email"/>
+        <textarea name="message" placeholder="Your Message"></textarea>
+        <vue-recaptcha
+            ref="recaptcha"
+            @verify="onCaptchaVerified"
+            @expired="resetCaptcha"
+            :sitekey="sitekey"
+            :loadRecaptchaScript="true"
+        />
+	 	<button  type="submit">Submit</button>
+	</form>
+</template>
+
+<script>
+import VueRecaptcha from 'vue-recaptcha'
+
+export default {
+  components: {
+    VueRecaptcha
+  },
+  computed: {
+    sitekey () {
+      return "YOUR_GOOGLE_RECAPTHCA_SITE_KEY";
+    }
+  },
+  methods: {
+    onFormSubmit() {
+      this.$refs.recaptcha.execute()
+    },
+    onCaptchaVerified (token) {
+      // Prepare form data
+      const formData = new FormData(this.$refs.contactform)
+
+      // Appended token in formData
+      formData.append('recaptcha-token', token)
+
+      // Make an ajax request to your Laravel endpoint.
+      axios.post('/your-form-endpoint', formData)
+        .then(response => {
+          // handle response
+        }, error => {
+          // handle errors
+        })
+    },
+    resetCaptcha () {
+      this.$refs.recaptcha.reset()
+    }
+  }
+}
+</script>
+
+```
+
+## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
