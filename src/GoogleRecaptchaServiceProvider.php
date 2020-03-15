@@ -22,13 +22,11 @@ class GoogleRecaptchaServiceProvider extends ServiceProvider
 
         // Register validator
         Validator::extend('recaptcha', function ($attribute, $value, $parameters, $validator) {
-            $ip = request()->getClientIp();
-
             $recaptcha = new ReCaptcha(config('google-recaptcha.secret'));
 
-            $resp = $recaptcha->verify($value, $ip);
+            $response = $recaptcha->verify($value, request()->ip());
 
-            return $resp->isSuccess();
+            return $response->isSuccess();
         }, 'Failed to verify recaptcha!');
     }
 
