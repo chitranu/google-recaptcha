@@ -1,8 +1,6 @@
 # Google reCAPTCHA validater for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/chitranu/google-recaptcha.svg?style=flat-square)](https://packagist.org/packages/chitranu/google-recaptcha)
-[![Build Status](https://img.shields.io/travis/chitranu/google-recaptcha/master.svg?style=flat-square)](https://travis-ci.org/chitranu/google-recaptcha)
-[![Quality Score](https://img.shields.io/scrutinizer/g/chitranu/google-recaptcha.svg?style=flat-square)](https://scrutinizer-ci.com/g/chitranu/google-recaptcha)
 [![Total Downloads](https://img.shields.io/packagist/dt/chitranu/google-recaptcha.svg?style=flat-square)](https://packagist.org/packages/chitranu/google-recaptcha)
 
 This package is a wrapper around [Google's reCAPTCHA PHP client library](https://github.com/google/recaptcha). It provides a handy validation rule `recaptcha`, which can be used to validate the reCAPTCHA token in the form requests.
