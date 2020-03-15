@@ -51,9 +51,9 @@ Create a Vue component for the form and submit reCAPTCHA token using form like t
 ```vue
 <template>
 	<form @submit.prevent="onFormSubmit()" ref="contactform">
-        <input type="text" name="name" placeholder="Your Name"/>
-        <input type="email" name="email" placeholder="Your Email"/>
-        <textarea name="message" placeholder="Your Message"></textarea>
+    <input type="text" name="name" placeholder="Your Name"/>
+    <input type="email" name="email" placeholder="Your Email"/>
+    <textarea name="message" placeholder="Your Message"></textarea>
 	 	<button  type="submit">Submit</button>
 	</form>
 </template>
@@ -94,17 +94,17 @@ If you are using [vue-recaptcha](https://github.com/DanSnow/vue-recaptcha) plugi
 ```vue
 <template>
 	<form @submit.prevent="onFormSubmit()" ref="contactform">
-        <input type="text" name="name" placeholder="Your Name"/>
-        <input type="email" name="email" placeholder="Your Email"/>
-        <textarea name="message" placeholder="Your Message"></textarea>
-        <vue-recaptcha
-            ref="recaptcha"
-            @verify="onCaptchaVerified"
-            @expired="resetCaptcha"
-            :sitekey="sitekey"
-            :loadRecaptchaScript="true"
-        />
-	 	<button  type="submit">Submit</button>
+    <input type="text" name="name" placeholder="Your Name"/>
+    <input type="email" name="email" placeholder="Your Email"/>
+    <textarea name="message" placeholder="Your Message"></textarea>
+    <vue-recaptcha
+        ref="recaptcha"
+        @verify="onCaptchaVerified"
+        @expired="resetCaptcha"
+        :sitekey="sitekey"
+        :loadRecaptchaScript="true"
+    />
+    <button  type="submit">Submit</button>
 	</form>
 </template>
 
