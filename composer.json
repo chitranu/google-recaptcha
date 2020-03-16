@@ -1,6 +1,6 @@
 {
     "name": "chitranu/google-recaptcha",
-    "description": "Easily validate recaptcha responses.",
+    "description": "Easily validate recaptcha responses in Laravel. A handy validation rule for validating the reCAPTCHA token in the form requests.",
     "keywords": [
         "chitranu",
         "google-recaptcha"
