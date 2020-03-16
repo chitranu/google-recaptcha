@@ -63,25 +63,25 @@ Create a Vue component for the form and submit reCAPTCHA token using form like t
 export default {
   methods: {
     async onFormSubmit() {
-    // Wait until recaptcha has been loaded.
-    await this.$recaptchaLoaded()
+      // Wait until recaptcha has been loaded.
+      await this.$recaptchaLoaded()
 
-    // Execute reCAPTCHA with action "login".
-    const token = await this.$recaptcha('login')
+      // Execute reCAPTCHA with action "login".
+      const token = await this.$recaptcha('login')
 
-    // Prepare form data
-    let formData = new FormData(this.$refs.contactform);
+      // Prepare form data
+      let formData = new FormData(this.$refs.contactform);
 
-    // Appended token in formData
-    formData.append('recaptcha-token', token);
+      // Appended token in formData
+      formData.append('recaptcha-token', token);
 
-    // Make an ajax request to your Laravel endpoint.
-    axios.post('/your-form-endpoint', formData)
-      .then(response => {
-        // handle response
-      }, error => {
-        // handle errors
-      })
+      // Make an ajax request to your Laravel endpoint.
+      axios.post('/your-form-endpoint', formData)
+        .then(response => {
+          // handle response
+        }, error => {
+          // handle errors
+        })
     }
   }
 }
