@@ -62,7 +62,7 @@ Create a Vue component for the form and submit reCAPTCHA token using form like t
 <script>
 export default {
   methods: {
-    onFormSubmit() {
+    async onFormSubmit() {
     // Wait until recaptcha has been loaded.
     await this.$recaptchaLoaded()
 
