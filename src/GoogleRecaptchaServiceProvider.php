@@ -21,12 +21,23 @@ class GoogleRecaptchaServiceProvider extends ServiceProvider
         }
 
         // Register validator
-        Validator::extend('recaptcha', function ($attribute, $value, $parameters, $validator) {
+        Validator::extend('recaptcha1', function ($attribute, $value, $parameters, $validator) {
             $recaptcha = new ReCaptcha(config('google-recaptcha.secret'));
 
             $response = $recaptcha->verify($value, request()->ip());
 
-            return $response->isSuccess();
+            if (! $response->isSuccess()) {
+                return false;
+            }
+
+            // calculate score
+            if (isset($parameters[0])) {
+                if ($response->getScore() < $parameters[0]) {
+                    return false;
+                }
+            }
+
+            return true;
         }, 'Failed to verify recaptcha!');
     }
 
