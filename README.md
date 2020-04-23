@@ -37,7 +37,7 @@ $request->validate([
 
 ### Setting score threshold
 
-If you are getting a lot of spam submissions. You can take advantage of setting the score threshold while specifying the validation rule by setting a value between `0.1 - 1.0`. Read more about score threshold here:: [https://developers.google.com/recaptcha/docs/v3#interpreting_the_score](https://developers.google.com/recaptcha/docs/v3#interpreting_the_score)
+If you are getting a lot of spam submissions, you can take advantage of setting the score threshold while specifying the validation rule by setting a value between `0.1 - 1.0`. Read more about score threshold here: [https://developers.google.com/recaptcha/docs/v3#interpreting_the_score](https://developers.google.com/recaptcha/docs/v3#interpreting_the_score)
 
 ```php
 $request->validate([
