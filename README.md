@@ -1,4 +1,4 @@
-# Google reCAPTCHA validater for Laravel
+# Google reCAPTCHA validator for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/chitranu/google-recaptcha.svg?style=flat-square)](https://packagist.org/packages/chitranu/google-recaptcha)
 [![Total Downloads](https://img.shields.io/packagist/dt/chitranu/google-recaptcha.svg?style=flat-square)](https://packagist.org/packages/chitranu/google-recaptcha)
